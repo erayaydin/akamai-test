@@ -4,6 +4,7 @@
   "description": "Fingerprint Pro Akamai Proxy Integration",
   "author": "FingerprintJS, Inc (https://fingerprint.com)",
   "license": "MIT",
+  "private": true,
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
