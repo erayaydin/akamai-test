@@ -3,7 +3,7 @@
   "changelog": [
     "@fingerprintjs/changesets-changelog-format",
     {
-      "repo": "fingerprintjs/fingerprint-pro-akamai-proxy-integration"
+      "repo": "erayaydin/akamai-test"
     }
   ],
   "commit": false,
