@@ -1,20 +1,20 @@
 name: Analyze Commit Messages
 on:
   pull_request:
-    branches-ignore:
-      - 'changeset-release/*'
 
 permissions:
   pull-requests: write
   contents: write
 jobs:
   analyze-commits:
+    if: ${{ !startsWith(github.head_ref, 'changeset-release/') }}
     name: Analyze commits
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/analyze-commits.yml@v1
     with:
       previewNotes: false
 
   preview-changeset:
+    if: ${{ !startsWith(github.head_ref, 'changeset-release/') }}
     name: Preview changeset
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/preview-changeset-release.yml@v1
     with:
