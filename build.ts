@@ -30,6 +30,8 @@ const defaults = {
   ingressUrl: 'api.fpjs.io',
 }
 
+const distPath = path.relative(process.cwd(), 'dist')
+
 export const patchBody = (_args?: PatchBodyArgs) => {
   const bodyContent = generatePatchBody({
     integrationPath: args['--integration-path'] ?? _args?.integrationPath,
@@ -40,9 +42,10 @@ export const patchBody = (_args?: PatchBodyArgs) => {
     ingressUrl: args['--ingress-url'] ?? _args?.ingressUrl ?? defaults.ingressUrl,
   })
 
-  fs.mkdirSync(path.relative(process.cwd(), 'dist/patch-body'), { recursive: true })
+  const patchBodyPath = path.join(distPath, 'patch-body')
+  fs.mkdirSync(patchBodyPath, { recursive: true })
 
-  const bodyPath = path.relative(process.cwd(), 'dist/patch-body/body.json')
+  const bodyPath = path.join(patchBodyPath, 'body.json')
   fs.writeFile(bodyPath, bodyContent, (err) => {
     if (err) {
       console.error(err)
@@ -56,10 +59,11 @@ const terraform = () => {
     cdnUrl: args['--cdn-url'] ?? defaults.cdnUrl,
     ingressUrl: args['--ingress-url'] ?? defaults.ingressUrl,
   })
-  const bodyPath = path.relative(process.cwd(), 'dist/terraform/json/fingerprint-property-rules.json')
-  const variablesPath = path.relative(process.cwd(), 'dist/terraform/json/fingerprint-property-variables.json')
+  const terraformPath = path.join(distPath, 'terraform')
+  const bodyPath = path.join(terraformPath, 'terraform-fingerprint-property-rules.json')
+  const variablesPath = path.join(terraformPath, 'terraform-fingerprint-property-variables.json')
 
-  fs.mkdirSync(path.relative(process.cwd(), 'dist/terraform/json'), { recursive: true })
+  fs.mkdirSync(terraformPath, { recursive: true })
 
   fs.writeFile(variablesPath, variablesBody, (err) => {
     if (err) {
@@ -69,7 +73,7 @@ const terraform = () => {
   })
 
   const terraformFilePath = path.relative(process.cwd(), 'assets/example.tf')
-  const targetPath = path.relative(process.cwd(), 'dist/terraform/example.tf')
+  const targetPath = path.join(terraformPath, 'example.tf')
   fs.copyFile(terraformFilePath, targetPath, (err) => {
     if (err) {
       console.error(err)
