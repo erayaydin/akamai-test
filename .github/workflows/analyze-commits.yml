@@ -1,5 +1,8 @@
 name: Analyze Commit Messages
-on: [pull_request]
+on:
+  pull_request:
+    branches-ignore:
+      - 'changeset-release/*'
 
 permissions:
   pull-requests: write
