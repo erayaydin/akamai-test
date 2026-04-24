@@ -1,5 +1,11 @@
 ## [1.0.1](https://github.com/fingerprintjs/fingerprint-pro-akamai-proxy-integration/compare/v1.0.0...v1.0.1) (2026-03-26)
 
+## 2.0.0
+
+### Major Changes
+
+- bump major ([de4337c](https://github.com/erayaydin/akamai-test/commit/de4337c813b4aa879390a0472914abbda9fb4d1c))
+
 ## 1.1.0
 
 ### Minor Changes
